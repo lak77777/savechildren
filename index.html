@@ -3,38 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>노트</title>
+    <title>Samsung Notes</title>
     
     <link rel="apple-touch-icon" href="note.png">
     <link rel="icon" href="note.html.jpg">
     
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="data:application/json,{'display':'standalone','start_url':'/','name':'Samsung Notes','short_name':'Notes'}">
     
     <style>
-        body { margin: 0; font-family: sans-serif; background-color: #fff; display: flex; flex-direction: column; height: 100vh; }
-        header { padding: 20px; font-size: 24px; font-weight: bold; border-bottom: 1px solid #eee; }
-        textarea { flex: 1; border: none; padding: 20px; font-size: 16px; outline: none; resize: none; }
+        body { margin: 0; font-family: -apple-system, sans-serif; background-color: #fff; display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+        header { padding: 40px 20px 10px; font-size: 28px; font-weight: bold; color: #252525; }
         
-        footer { padding: 15px; border-top: 1px solid #eee; background: #f9f9f9; display: flex; align-items: center; }
-        .secret-btn { color: #888; font-size: 14px; text-decoration: none; border: 1px solid #ddd; padding: 5px 10px; border-radius: 5px; }
+        /* 광고 영역 */
+        .ads { height: 50px; background: #f8f8f8; text-align: center; line-height: 50px; font-size: 11px; color: #ccc; border-bottom: 1px solid #eee; }
         
-        /* 광고 영역 (수익 창출용 공간) */
-        .ads { height: 50px; background: #f0f0f0; text-align: center; line-height: 50px; font-size: 12px; color: #bbb; }
+        textarea { flex: 1; border: none; padding: 20px; font-size: 18px; outline: none; resize: none; line-height: 1.6; }
+        
+        /* 하단 메뉴 바 */
+        footer { padding: 10px 20px; border-top: 1px solid #eee; background: #fff; display: flex; justify-content: space-between; align-items: center; padding-bottom: 30px; }
+        
+        .menu-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #666; font-size: 11px; }
+        
+        /* 유튜브 아이콘 스타일 */
+        .youtube-icon { width: 30px; height: 30px; background: #FF0000; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 4px; position: relative; }
+        .youtube-icon::after { content: ''; border-top: 6px solid transparent; border-bottom: 6px solid transparent; border-left: 10px solid white; margin-left: 3px; }
+        
+        .hidden-menu { opacity: 0.3; } /* 너무 튀지 않게 살짝 투명하게 */
     </style>
 </head>
 <body>
 
-<header>내 노트</header>
+<header>모든 노트</header>
 
-<div class="ads">광고 영역 (여기에 광고 코드를 넣으세요)</div>
+<div class="ads" onclick="alert('광고 클릭 시 수익이 발생합니다!')">
+    연결된 학습 광고 영역
+</div>
 
-<textarea placeholder="공부 내용을 입력하세요..."></textarea>
+<textarea id="memo" placeholder="메모를 입력하세요..."></textarea>
 
 <footer>
-    <a href="https://www.youtube.com" class="secret-btn">참고</a>
+    <div class="menu-item">
+        <span style="font-size: 20px;">🗒️</span>
+        <span>노트</span>
+    </div>
+    
+    <a href="https://www.youtube.com" target="_blank" class="menu-item hidden-menu">
+        <div class="youtube-icon"></div>
+        <span>유튜브</span>
+    </a>
+
+    <div class="menu-item">
+        <span style="font-size: 20px;">⚙️</span>
+        <span>설정</span>
+    </div>
 </footer>
 
 <script>
-    // 간단한 메모 저장 기능 (나갔다 들어와도 유지되게)
-    const area = document.querySelector
+    const area = document.getElementById('memo');
+    
+    // 메모 자동 저장 기능
+    area.value = localStorage.getItem('myMemo') || "";
+    area.addEventListener('input', () => {
+        localStorage.setItem('myMemo', area.value);
+    });
+
+    // 주소창 숨기기 보조 스크립트
+    window.addEventListener('load', () => {
+        window.scrollTo(0, 1);
+    });
+</script>
+
+</body>
+</html>
