@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>노트</title>
+    
+    <link rel="apple-touch-icon" href="note.png">
+    <link rel="icon" href="note.png">
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    
+    <style>
+        body { margin: 0; font-family: sans-serif; background-color: #fff; display: flex; flex-direction: column; height: 100vh; }
+        header { padding: 20px; font-size: 24px; font-weight: bold; border-bottom: 1px solid #eee; }
+        textarea { flex: 1; border: none; padding: 20px; font-size: 16px; outline: none; resize: none; }
+        
+        footer { padding: 15px; border-top: 1px solid #eee; background: #f9f9f9; display: flex; align-items: center; }
+        .secret-btn { color: #888; font-size: 14px; text-decoration: none; border: 1px solid #ddd; padding: 5px 10px; border-radius: 5px; }
+        
+        /* 광고 영역 (수익 창출용 공간) */
+        .ads { height: 50px; background: #f0f0f0; text-align: center; line-height: 50px; font-size: 12px; color: #bbb; }
+    </style>
+</head>
+<body>
+
+<header>내 노트</header>
+
+<div class="ads">광고 영역 (여기에 광고 코드를 넣으세요)</div>
+
+<textarea placeholder="공부 내용을 입력하세요..."></textarea>
+
+<footer>
+    <a href="https://www.youtube.com" class="secret-btn">참고</a>
+</footer>
+
+<script>
+    // 간단한 메모 저장 기능 (나갔다 들어와도 유지되게)
+    const area = document.querySelector
