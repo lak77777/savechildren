@@ -2,61 +2,71 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Samsung Notes</title>
     
     <link rel="apple-touch-icon" href="note.png">
-    <link rel="icon" href="note.html.jpg">
+    <link rel="icon" type="image/png" href="note.html.jpg">
     
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="manifest" href="data:application/json,{'display':'standalone','start_url':'/','name':'Samsung Notes','short_name':'Notes'}">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     
+    <link rel="manifest" href='data:application/json,{"name":"Samsung Notes","short_name":"Notes","start_url":".","display":"standalone","background_color":"#ffffff","theme_color":"#ffffff","icons":[{"src":"note.png","sizes":"192x192","type":"image/png"},{"src":"note.png","sizes":"512x512","type":"image/png"}]}'>
+
     <style>
         body { margin: 0; font-family: -apple-system, sans-serif; background-color: #fff; display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
-        header { padding: 40px 20px 10px; font-size: 28px; font-weight: bold; color: #252525; }
         
-        /* 광고 영역 */
-        .ads { height: 50px; background: #f8f8f8; text-align: center; line-height: 50px; font-size: 11px; color: #ccc; border-bottom: 1px solid #eee; }
+        /* 상단 바: 삼성 노트 느낌 */
+        header { padding: 50px 20px 10px; font-size: 26px; font-weight: bold; color: #1a1a1a; letter-spacing: -0.5px; }
         
-        textarea { flex: 1; border: none; padding: 20px; font-size: 18px; outline: none; resize: none; line-height: 1.6; }
+        /* 광고 영역: 실제 광고 코드가 들어갈 자리 */
+        .ads { height: 55px; background: #f2f2f2; text-align: center; line-height: 55px; font-size: 11px; color: #999; border-bottom: 1px dotted #ddd; cursor: pointer; }
+        
+        /* 메모장 본문 */
+        textarea { flex: 1; border: none; padding: 20px; font-size: 18px; outline: none; resize: none; line-height: 1.6; color: #333; }
         
         /* 하단 메뉴 바 */
-        footer { padding: 10px 20px; border-top: 1px solid #eee; background: #fff; display: flex; justify-content: space-between; align-items: center; padding-bottom: 30px; }
+        footer { padding: 10px 25px 35px; border-top: 1px solid #f0f0f0; background: #fff; display: flex; justify-content: space-between; align-items: center; }
         
-        .menu-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #666; font-size: 11px; }
+        .menu-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #777; font-size: 10px; font-weight: 500; }
         
-        /* 유튜브 아이콘 스타일 */
-        .youtube-icon { width: 30px; height: 30px; background: #FF0000; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 4px; position: relative; }
-        .youtube-icon::after { content: ''; border-top: 6px solid transparent; border-bottom: 6px solid transparent; border-left: 10px solid white; margin-left: 3px; }
+        /* 유튜브 버튼 위장 스타일 */
+        .youtube-btn { margin-bottom: 5px; opacity: 0.8; transition: transform 0.2s; }
+        .youtube-icon { width: 32px; height: 24px; background: #FF0000; border-radius: 6px; display: flex; align-items: center; justify-content: center; position: relative; }
+        .youtube-icon::after { content: ''; border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-left: 8px solid white; margin-left: 2px; }
         
-        .hidden-menu { opacity: 0.3; } /* 너무 튀지 않게 살짝 투명하게 */
+        .menu-item span { margin-top: 2px; }
+
+        /* 설치 안내 (처음 들어온 친구들에게만 보이게) */
+        #install-guide { font-size: 10px; color: #f00; text-align: center; background: #fff5f5; padding: 5px; display: none; }
     </style>
 </head>
 <body>
 
+<div id="install-guide">⚠️ 크롬 마크를 없애려면 [설정] > [홈 화면에 추가]를 누르세요!</div>
+
 <header>모든 노트</header>
 
-<div class="ads" onclick="alert('광고 클릭 시 수익이 발생합니다!')">
-    연결된 학습 광고 영역
+<div class="ads" onclick="window.open('https://your-ad-link.com', '_blank')">
+    추천 학습 콘텐츠 광고 (수익 최적화 영역)
 </div>
 
-<textarea id="memo" placeholder="메모를 입력하세요..."></textarea>
+<textarea id="memo" placeholder="여기에 메모를 작성하세요..."></textarea>
 
 <footer>
     <div class="menu-item">
-        <span style="font-size: 20px;">🗒️</span>
+        <span style="font-size: 22px;">🗒️</span>
         <span>노트</span>
     </div>
     
-    <a href="https://www.youtube.com" target="_blank" class="menu-item hidden-menu">
+    <a href="https://www.youtube.com" target="_blank" class="menu-item youtube-btn">
         <div class="youtube-icon"></div>
-        <span>유튜브</span>
+        <span>참고 영상</span>
     </a>
 
     <div class="menu-item">
-        <span style="font-size: 20px;">⚙️</span>
+        <span style="font-size: 22px;">⚙️</span>
         <span>설정</span>
     </div>
 </footer>
@@ -64,16 +74,21 @@
 <script>
     const area = document.getElementById('memo');
     
-    // 메모 자동 저장 기능
-    area.value = localStorage.getItem('myMemo') || "";
+    // 1. 메모 자동 저장 (끄기 전까지 유지)
+    area.value = localStorage.getItem('mySecretMemo') || "";
     area.addEventListener('input', () => {
-        localStorage.setItem('myMemo', area.value);
+        localStorage.setItem('mySecretMemo', area.value);
     });
 
-    // 주소창 숨기기 보조 스크립트
-    window.addEventListener('load', () => {
-        window.scrollTo(0, 1);
-    });
+    // 2. 크롬 주소창 없이 들어왔는지 확인 (진짜 앱 모드인지 체크)
+    if (!window.matchMedia('(display-mode: standalone)').matches) {
+        document.getElementById('install-guide').style.display = 'block';
+    }
+
+    // 3. 광고 클릭 이벤트 예시
+    function handleAdClick() {
+        // 여기에 수익형 광고 링크를 연결하세요.
+    }
 </script>
 
 </body>
